@@ -1,0 +1,2 @@
+export const GET_API_RICK_AND_MORTY = "GET_API_RICK_AND_MORTY";
+export const SET_FAVORITE = "SET_FAVORITE";

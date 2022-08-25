@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavbarMenu from "./components/NavbarMenu";
+import Home from "./pages/Home";
+import RickAndMorty from "./pages/RickAndMorty";
+import { useDispatch } from "react-redux";
+import { getApiRickAndMorty } from "./redux/modules/rickAndMorty/actions";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getApiRickAndMorty.trigger());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <NavbarMenu />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="rickAndMorty" element={<RickAndMorty />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
